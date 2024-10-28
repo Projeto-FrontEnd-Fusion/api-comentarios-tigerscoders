@@ -1,7 +1,7 @@
-const Comment = require('../models/comment')
+import Comment from '../models/comment.js';
 
 //Criando um novo comentário.
-exports.createComment = async (req, res)=> {
+export async function createComment(req, res) {
     try{
         const{name,githubUser,email,comment} = req.body;
 
@@ -17,14 +17,14 @@ exports.createComment = async (req, res)=> {
     }catch (error){
         res.status(500).json({error: "Erro ao salvar o comentário."});
     }
-};
+}
 
 //Bucando todos os comentários
-exports.getAllComments = async(req, res)=> {
+export async function getAllComments(req, res) {
     try{
         const comments = await Comment.find();
         res.status(200).json(comments);
     }catch(error){
         res.status(500).json({error:'Erro ao consultar comentários.'})
     }
-};
+}

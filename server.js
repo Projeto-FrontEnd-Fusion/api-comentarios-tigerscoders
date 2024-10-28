@@ -1,28 +1,20 @@
-//Importando bibliotecas.
-const express           = require('express');
-const dotenv            = require('dotenv');//config de ambiente.
-const errorHandler      = require('./src/middlewares/erroHandler');//Tratamento de erros.
-const serverMiddlewares = require('./src/middlewares/server');//verificação do server.
-const routesComment     = require('./src/routes/routesComment');
-const routesCheck       = require('./src/routes/routesCheck'); //checando se rota da API está funcionando.
-const connectDb         = require('./src/controllers/controllerDb')//Conexão com o banco mongoDB.
+import cors from 'cors';
+import morgan from 'morgan'; //Acompanhar o trafego na API.
+import helmet from 'helmet'; //segurança para cabeçalhos.
+import rateLimit from 'express-rate-limit';
+import express from 'express'
 
-dotenv.config();
+const serverMiddlewares = (app)=>{
+    app.use(cors()); //Permitindo requisições de outras origens.
+    app.use(express.json()); //Parser do body como JSON.
+    app.use(helmet()); //Segurança para configurar cabeçalhos HTTP.
+    app.use(morgan('dev')); //Log da requisição HTTP.
+    app.use(rateLimit({
+            windowMs: 15*60*1000, //intervalo de 15 minutos.
+            max: 100,//limite maximo para 100 requisão por IP.
+            message: "Foram realizadas muitas requisições criadas a partir deste IP, tente novamente mais tarde."
+        })
+    )
+};
 
-const app = express();
-const PORT = process.env.PORT || 5000;
-
-//middlewares
-serverMiddlewares(app);
-
-//Rota da aplicação.
-app.use('/api', routesComment);
-
-//Verificar o funcionamento da API.
-app.use('/', routesCheck);
-
-//iniciando o servidor.
-connectDb(app, PORT);
-
-//Tratamento de erros.
-app.use(errorHandler)
+export default serverMiddlewares;

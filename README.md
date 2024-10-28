@@ -117,3 +117,12 @@ Aqui está um exemplo da interface do formulário de comentário que enviará os
 - Separar a lógica da API em controladores, modelos e middlewares.
 - Incluir testes para garantir que a API funcione conforme o esperado.
 - Adotar práticas de versionamento de API para facilitar a evolução do projeto.
+
+
+## Contribuintes
+Obrigado a todos os que contribuíram para este projeto! 💪
+
+| Nome             | GitHub                                         | Função         |
+|------------------|------------------------------------------------|----------------|
+| Dinho Silva      | [Ver Perfil](https://github.com/dinhoSilwa) | Back-end  |
+| Ludimar Padilha  | [Ver Perfil](https://github.com/LudimarPadilha)  | Back-end       |

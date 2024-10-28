@@ -1,11 +1,12 @@
 //Importando bibliotecas.
-const express           = require('express');
-const dotenv            = require('dotenv');//config de ambiente.
-const errorHandler      = require('./src/middlewares/erroHandler');//Tratamento de erros.
-const serverMiddlewares = require('./src/middlewares/server');//verificação do server.
-const routesComment     = require('./src/routes/routesComment');
-const routesCheck       = require('./src/routes/routesCheck'); //checando se rota da API está funcionando.
-const connectDb         = require('./src/controllers/controllerDb')//Conexão com o banco mongoDB.
+import express from 'express';
+import dotenv from 'dotenv';
+import errorHandler from './src/middlewares/erroHandler.js';//Tratamento de erros.
+import serverMiddlewares from './src/middlewares/server.js';//verificação do server.
+import routesComment from'./src/routes/routesComment.js';
+import routesInscribe from'./src/routes/routesInscribe.js';//Rota para inscrever novos membros.
+import routesCheck from'./src/routes/routesCheck.js'; //checando se rota da API está funcionando.
+import connectDb from './src/controllers/controllerDb.js';//Conexão com o banco mongoDB.
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ serverMiddlewares(app);
 
 //Rota da aplicação.
 app.use('/api', routesComment);
+app.use('/api', routesInscribe);
 
 //Verificar o funcionamento da API.
 app.use('/', routesCheck);

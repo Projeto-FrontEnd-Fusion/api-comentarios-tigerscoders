@@ -1,9 +1,9 @@
-const mongoose = require('mongoose')
+import {connect} from 'mongoose';
 
 //Função responsavel por conectar no banco.
 const connectDb = async (app, PORT) =>{
     try{
-        await mongoose.connect(process.env.MONGO_URI)
+        await connect(process.env.MONGO_URI)
         console.log('Conectado ao MongoDB')
         //Inicia o servidor caso a conexão for segura.
         app.listen(PORT,() =>{console.log(`Servidor rodando na porta ${PORT}`)})
@@ -13,4 +13,4 @@ const connectDb = async (app, PORT) =>{
     }
 };
 
-module.exports = connectDb;
+export default connectDb;

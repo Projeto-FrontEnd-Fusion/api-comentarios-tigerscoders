@@ -7,4 +7,4 @@ const errorHandler =(err, req, res, next)=>{
 };
 
 //exportando objeto.
-module.exports = errorHandler
+export default errorHandler

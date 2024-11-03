@@ -9,9 +9,18 @@
 ## Modelo de Dados (Schema)
 A API deve conter um modelo de comentário com os seguintes campos:
 
+  # comment
 - `name`: Nome do usuário (string, obrigatório).
 - `githubUser`: Nome de usuário no GitHub (string, opcional).
 - `email`: Endereço de email (string, obrigatório).
+- `comment`: Texto do comentário (string, obrigatório).
+- `createdAt`: Data de criação do comentário (gerada automaticamente).
+  # inscribes
+- `name`: Nome do usuário (string, obrigatório).
+- `email`: Endereço de email (string, obrigatório).
+- `performance`: Área de Atuação (string, obrigatório).
+- `experience`: Senioridade (string, obrigatório).
+- `workexperience`: Possuo experência (Boolean, opcional).
 - `comment`: Texto do comentário (string, obrigatório).
 - `createdAt`: Data de criação do comentário (gerada automaticamente).
 
@@ -39,6 +48,35 @@ Rota para buscar e retornar todos os comentários armazenados no banco de dados.
     - `name`
     - `githubUser`
     - `email`
+    - `comment`
+    - `createdAt`
+
+### 3. POST `/api/inscribe`
+Rota para receber e armazenar os dados do formulário de novos participantes no banco de dados.
+
+- **Dados de Entrada (Body)**:
+  - `name`: string
+  - `email`: string
+  - `performance`: string
+  - `experience`: string
+  - `workexperience`: Boolean (opcional)
+  - `comment`: string
+
+- **Resposta**:
+  - Status 201 (Created) em caso de sucesso, com os dados do comentário salvo.
+  - Status 400 (Bad Request) em caso de erro de validação dos dados.
+
+### 4. GET `/api/inscribe`
+Rota para buscar e retornar todos os participantes armazenados no banco de dados.
+
+- **Resposta**:
+  - Status 200 (OK) com um array de objetos contendo os comentários.
+  - Cada objeto conterá:
+    - `name`
+    - `email`
+    - `performance`
+    - `experience`
+    - `workexperience`
     - `comment`
     - `createdAt`
 

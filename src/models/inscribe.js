@@ -1,11 +1,7 @@
 import {Schema, model} from 'mongoose';
 
-const comment = new Schema({
+const inscribe = new Schema({
     name:{
-        type:String,
-        required: true
-    },
-    githubUser:{
         type:String,
         required: true
     },
@@ -13,6 +9,18 @@ const comment = new Schema({
         type:String,
         required:true,
         match:[/.+\@.+\..+/, 'Para continuar o procedimento, insira um endereço de email válido.']
+    },
+    performance:{
+        type:String,
+        required: true
+    },
+    experience:{
+        type:String,
+        required: true
+    },
+    workexperience: {
+        type:Boolean,
+        default: false
     },
     comment:{
         type: String,
@@ -24,5 +32,5 @@ const comment = new Schema({
     }
 });
 
-//Criando e exportando o modelo de dados.
-export default model('Comment', comment)
+//Criando e exportando o modelo de dados das inscrições.
+export default model('Inscribe', inscribe)

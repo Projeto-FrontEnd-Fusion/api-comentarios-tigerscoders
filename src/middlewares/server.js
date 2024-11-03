@@ -1,12 +1,12 @@
-const cors          = require('cors');
-const morgan        = require('morgan'); //Acompanhar o trafego na API.
-const helmet        = require('helmet'); //segurança para cabeçalhos.
-const rateLimit     = require('express-rate-limit');
-const bodyParser    = require('body-parser');
+import cors from 'cors';
+import morgan from 'morgan'; //Acompanhar o trafego na API.
+import helmet from 'helmet'; //segurança para cabeçalhos.
+import rateLimit from 'express-rate-limit';
+import express from 'express'
 
 const serverMiddlewares = (app)=>{
     app.use(cors()); //Permitindo requisições de outras origens.
-    app.use(bodyParser.json()); //Parser do body como JSON.
+    app.use(express.json()); //Parser do body como JSON.
     app.use(helmet()); //Segurança para configurar cabeçalhos HTTP.
     app.use(morgan('dev')); //Log da requisição HTTP.
     app.use(rateLimit({
@@ -17,4 +17,4 @@ const serverMiddlewares = (app)=>{
     )
 };
 
-module.exports = serverMiddlewares;
+export default serverMiddlewares;
